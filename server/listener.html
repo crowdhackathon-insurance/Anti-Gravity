@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+jQuery(function($){
+
+    setup();
+
+    function setup(){
+
+    var host = "ws://localhost:9093/ws";
+    var socket = new WebSocket(host);
+    //console.log("socket status: " + socket.readyState);
+
+
+    //socket.send(text);
+
+
+    socket.onopen = function(){ }
+
+    socket.onmessage = function(msg){
+        console.log(msg.data);
+    }
+
+    socket.onclose = function(){
+        console.log("Closed.");
+    }
+
+}
+
+});
+</script>
