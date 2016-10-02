@@ -1,10 +1,5 @@
-.jumbotron {
-    padding-top: 18px;
-    padding-bottom: 18px;
-}
-
 .menu_link {
-    background: black;
+    background: white;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -12,7 +7,7 @@
 
 .menu_link img{
     width: 80%;
-    height: 150px;
+    height: 200px;
 }
 .user_data {
     width: 100%;
