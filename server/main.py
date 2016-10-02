@@ -61,7 +61,7 @@ class socketListener(SocketServer.BaseRequestHandler):
         try:
             with open("html/output", "a") as myfile:
                 while 1:
-                    allLine = self.request.recv(24)
+                    allLine = self.request.recv(1024)
                     lines = allLine.split("\n")
                     for line in lines:
                         count = len(line);

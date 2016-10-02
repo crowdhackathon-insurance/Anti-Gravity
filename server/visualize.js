@@ -29,19 +29,6 @@ function init() {
 
     scene.add(plane);
 
-    var directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
-    directionalLight.position.set( 1, 1, 1 ).normalize();
-    directionalLight.intensity = 1.0;
-    scene.add( directionalLight );
-    directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
-    directionalLight.position.set( - 1, 0.6, 0.5 ).normalize();
-    directionalLight.intensity = 0.5;
-    scene.add( directionalLight );
-    directionalLight = new THREE.DirectionalLight();
-    directionalLight.position.set( - 0.3, 0.6, - 0.8 ).normalize( 0xb8b8b8 );
-    directionalLight.intensity = 0.45;
-    scene.add( directionalLight );
-
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( 500, 500 );
 
@@ -98,57 +85,31 @@ function readTextFile(file) {
 
 function init2() {
     scene = new THREE.Scene();
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
-				// camera
-				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
-				camera.position.set( 15, 20, 30 );
-				scene.add( camera );
+	renderer = new THREE.WebGLRenderer( { antialias: true } );
+	renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize(500, 500);
+
+    $("#webgl-cointainer").append( renderer.domElement );
+
+	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera.position.set( 15, 20, 30 );
+	scene.add( camera );
 				// controls
-				controls = new THREE.OrbitControls( camera, renderer.domElement );
-				controls.minDistance = 20;
-				controls.maxDistance = 50;
-				controls.maxPolarAngle = Math.PI / 2;
-				scene.add( new THREE.AmbientLight( 0x222222 ) );
-				var light = new THREE.PointLight( 0xffffff, 1 );
-				camera.add( light );
-				scene.add( new THREE.AxisHelper( 20 ) );
-				//
-				var loader = new THREE.TextureLoader();
-				var texture = loader.load( 'textures/sprites/disc.png' );
-				group = new THREE.Group();
-				scene.add( group );
-				// points
-				var pointsGeometry = new THREE.DodecahedronGeometry( 10 );
-				for ( var i = 0; i < pointsGeometry.vertices.length; i ++ ) {
-					//pointsGeometry.vertices[ i ].add( randomPoint().multiplyScalar( 2 ) ); // wiggle the points
-				}
-				var pointsMaterial = new THREE.PointsMaterial( {
-					color: 0x0080ff,
-					map: texture,
-					size: 1,
-					alphaTest: 0.5
-				} );
-				var points = new THREE.Points( pointsGeometry, pointsMaterial );
-				group.add( points );
-				// convex hull
-				var meshMaterial = new THREE.MeshLambertMaterial( {
-					color: 0xffffff,
-					opacity: 0.5,
-					transparent: true
-				} );
-				var meshGeometry = new THREE.ConvexGeometry( pointsGeometry.vertices );
-				mesh = new THREE.Mesh( meshGeometry, meshMaterial );
-				mesh.material.side = THREE.BackSide; // back faces
-				mesh.renderOrder = 0;
-				group.add( mesh );
-				mesh = new THREE.Mesh( meshGeometry, meshMaterial.clone() );
-				mesh.material.side = THREE.FrontSide; // front faces
-				mesh.renderOrder = 1;
-				group.add( mesh );
-				//
-				window.addEventListener( 'resize', onWindowResize, false );
+	controls = new THREE.OrbitControls( camera, renderer.domElement );
+	controls.minDistance = 20;
+	controls.maxDistance = 150;
+	controls.maxPolarAngle = Math.PI / 2;
+	scene.add( new THREE.AmbientLight( 0x222222 ) );
+	var light = new THREE.PointLight( 0xffffff, 1 );
+	camera.add( light );
+	scene.add( new THREE.AxisHelper( 20 ) );
+
+    //group = new THREE.Group();
+	//scene.add( group );
+    geometry = new THREE.BoxGeometry( 5, 2, 2 );
+    material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+    mesh = new THREE.Mesh( geometry, material );
+    scene.add(mesh);
+
 
 }

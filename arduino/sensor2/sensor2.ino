@@ -8,7 +8,7 @@
 MPU6050 mpu;
 #define OUTPUT_READABLE_YAWPITCHROLL
 
-#define WIFIMINDELAY 2000
+#define WIFIMINDELAY 200
 unsigned long lastTime;
 
 #define INTERRUPT_PIN 2
@@ -21,7 +21,7 @@ uint16_t fifoCount;
 uint8_t fifoBuffer[64];
 
 VectorFloat gravity;
-float euler[3];
+Quaternion q;
 float ypr[3];
 
 
