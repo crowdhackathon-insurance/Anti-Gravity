@@ -57,9 +57,9 @@ class socketListener(SocketServer.BaseRequestHandler):
 
     def handle(self):
         print "hi"
-        self.request.settimeout(10.0)
+        #self.request.settimeout(10.0)
         try:
-            with open("html/output", "a") as myfile:
+            with open("output", "a") as myfile:
                 while 1:
                     allLine = self.request.recv(1024)
                     lines = allLine.split("\n")
@@ -82,6 +82,7 @@ class socketListener(SocketServer.BaseRequestHandler):
                                     print line[4:count-4]
                                     myfile.write(line[4:count-4] + "\n")
         except Exception as inst:
+            raise
             print "next"
             self.request.close()
 

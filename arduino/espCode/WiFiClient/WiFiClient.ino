@@ -28,14 +28,11 @@ void setup() {
 
 
 void loop() {
-    if (!client.connected()) {
-        if (!client.connect(serverIp, port)) {
-            return;
-        }
-        client.print(clientId);
-    }
     if (Serial.available()) {
-       client.print(Serial.readString());
+          if (!client.connect(serverIp, port)) {
+        return;
+    }
+       client.println(Serial.readString());
     }
     delay(10);
 }

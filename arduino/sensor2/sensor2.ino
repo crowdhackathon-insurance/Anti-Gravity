@@ -8,7 +8,7 @@
 MPU6050 mpu;
 #define OUTPUT_READABLE_YAWPITCHROLL
 
-#define WIFIMINDELAY 200
+#define WIFIMINDELAY 1000
 unsigned long lastTime;
 
 #define INTERRUPT_PIN 2
@@ -86,7 +86,7 @@ void loop() {
     mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
     if ((millis() - lastTime) > WIFIMINDELAY) {
       lastTime = millis();
-      Serial.println(String("ypr:") + (ypr[0] * 180 / M_PI) + ":" + (ypr[1] * 180 / M_PI) + ":" + (ypr[2] * 180 / M_PI));
+      Serial.println(String("ypr:") + (ypr[0] * 180 / M_PI) + ":" + (ypr[1] * 180 / M_PI) + ":" + (ypr[2] * 180 / M_PI) + ":ypr\n");
     }
 
   }

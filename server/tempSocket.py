@@ -12,22 +12,15 @@ class Listener(SocketServer.BaseRequestHandler):
 
     def handle(self):
         print "got"
-        self.request.settimeout(10.0)
-        try:
-            with open("outputT", "a") as myfile:
-                datata = self.request.recv(1024)
-                print datata
-                myfile.write(datata + "\n")
-            self.request.close()
-        except:
-            print "next"
-            self.request.close()
+        datata = self.request.recv(1024)
+        print datata
+        #myfile.write(datata + "\n")
 
 class Listener2(SocketServer.BaseRequestHandler):
 
     def handle(self):
         print "hi"
-        self.request.settimeout(10.0)
+        #self.request.settimeout(10.0)
         try:
             with open("output", "a") as myfile:
                 while 1:

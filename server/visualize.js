@@ -111,5 +111,5 @@ function init2() {
     mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
 
-
+    renderer.setClearColor (0xffffff, 1)
 }
