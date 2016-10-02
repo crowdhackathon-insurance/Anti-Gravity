@@ -2,9 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>3js test</title>
-
-<script src="three.js"></script>
+    <title>User</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -14,25 +12,56 @@
 
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Onoma</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="user.html">Analyze data</a></li>
+          <li><a href="listener.html">Alert Listener</a></li>
+          <li><a href="#">Visualize Data</a></li>
+        </ul>
+      </div>
+    </nav>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Onoma</a>
+    <div class="picker_container">
+        <select class="form-control" style="display:inline;">
+          <option>Mustard</option>
+          <option>Ketchup</option>
+          <option>Relish</option>
+        </select>
+        <img id="refresh" src="http://www.freeiconspng.com/uploads/refresh-icon-4.png"/>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Analyze data</a></li>
-      <li><a href="#">Alert Listener</a></li>
-      <li><a href="#">Visualize Data</a></li>
-    </ul>
-  </div>
-</nav>
-<div id="container">
-    <div class="userData">
+    <div class="analyze_data">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="col-sm-6">
+                <div class="user_data">
+                    <div class="container-fluid well span6">
+                    <div class="span8">
+                        <h3>Owners Name</h3>
+                        <h6>Vehicle Type:</h6>
+                        <h6>Email: email</h6>
+                        <h6>Phone Number: </h6>
+                        <h6>Old: 1 Year</h6>
+                        <h6><a href="#">More... </a></h6>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="user_generated_data">
+                    <div class="container-fluid well span6">
+                    <div class="span8">
+                        <h3>Current Category: 10</h3>
+                        <button type="button" class="btn btn-default">Erase Data</button>
+                        <button type="button" class="btn btn-default">Learn From Data</button>
+                        <button type="button" class="btn btn-default">Visualize Data</button>
 
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -2,3 +2,51 @@
     padding-top: 18px;
     padding-bottom: 18px;
 }
+
+.menu_link {
+    background: black;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.menu_link img{
+    width: 80%;
+    height: 150px;
+}
+.user_data {
+    width: 100%;
+    height: 150px;
+}
+.user_generated_data {
+    width: 100%;
+    height: 150px;
+}
+
+.picker_container {
+    width: 50%;
+    margin: auto;
+    height: 50px;
+    text-align: center;
+}
+
+.picker_container .form-control {
+    width: 50%;
+}
+
+.picker_container #refresh {
+    width: 15px;
+    height: 15px;
+}
+
+.alert {
+    width: 50%;
+    margin: auto;
+}
+
+#waiting_icon {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+
+}

@@ -16,10 +16,9 @@ function init() {
     scene.add( mesh );
 
     renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    //renderer.setSize( window.innerWidth, window.innerHeight );
 
-    document.body.appendChild( renderer.domElement );
-
+    $("#webgl-cointainer").append( renderer.domElement );
 }
 
 function animate() {

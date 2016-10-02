@@ -23,27 +23,28 @@ def serverStaticThread():
     httpd.serve_forever()
 
 class webSocketHandler(tornado.websocket.WebSocketHandler):
-  def open(self):
-    print 'Got one'
-    self.write_message("reply")
-    #websockets.append(self)
+    def check_origin(self, origin):
+        return True
+    def open(self):
+        print 'Got one'
+        self.write_message("reply")
+        #websockets.append(self)
 
-  def on_message(self, message):
-    self.write_message("New Data?")
-    print 'new data';
+    def on_message(self, message):
+        self.write_message("New Data?")
+        print 'new data';
 
-  def on_close(self):
-    print 'closed'
+    def on_close(self):
+        print 'closed'
+
 
 def serverWebSocket():
     application = tornado.web.Application([
       (r'/ws', webSocketHandler),
     ])
-    #thread = Thread(target = listenForCrashThread)
-    #thread.start()
     application.listen(WEBSOCKET_PORT)
     tornado.ioloop.IOLoop.instance().start()
-    #thread.join()
+    thread.join()
 
 def is_number(s):
     try:

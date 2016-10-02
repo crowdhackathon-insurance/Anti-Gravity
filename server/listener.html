@@ -1,39 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <meta charset="utf-8" />
+    <title>User</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Onoma</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="user.html">Analyze data</a></li>
+          <li class="active"><a href="listener.html">Alert Listener</a></li>
+          <li><a href="visualize.html">Visualize Data</a></li>
+        </ul>
+      </div>
+    </nav>
 
+    <div id="no-accident" class="alert alert-success">
+      <strong>No accident has happend yet.</strong>
+    </div>
+    <div id="accident" class="alert alert-danger" style="display:none;">
+      <strong>An accident has happened!</strong>
+    </div>
+
+    <div id="waiting_icon">
+        <h3>Listening for accidents...</h3>
+        <i class="fa fa-refresh fa-spin" style="font-size:250px"></i>
+    </div>
+
+    <div id="accident_info" style="display:none;">
+        <div class="col-sm-6">
+            <div class="user_data">
+                <div class="container-fluid well span6">
+                <div class="span8">
+                    <h3>Owners Name</h3>
+                    <h6>Vehicle Type:</h6>
+                    <h6>Email: email</h6>
+                    <h6>Phone Number: </h6>
+                    <h6>Old: 1 Year</h6>
+                    <button type="button" class="btn btn-default">Visualize Accident</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="user_generated_data">
+                <div class="container-fluid well span6">
+                <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCqt4XnGeC4puz4ALQ5AAq8r5lDMYb8HJI &q=37.9780983,23.7141711" allowfullscreen> </iframe>
+                </div>
+            </div>
+    </div>
 </body>
-</html>
+</hmtl>
+
+
 <script>
 
-jQuery(function($){
-
+jQuery(function($) {
     setup();
 
-    function setup(){
+    function setup() {
 
-    var host = "ws://localhost:9093/ws";
-    var socket = new WebSocket(host);
-    //console.log("socket status: " + socket.readyState);
+        var host = "ws://localhost:9093/ws";
+        var socket = new WebSocket(host);
 
+        socket.onopen = function(){ }
 
-    //socket.send(text);
+        socket.onmessage = function(msg){
+            console.log(msg.data);
+        }
 
+        socket.onclose = function(){
+            console.log("Closed.");
+        }
 
-    socket.onopen = function(){ }
-
-    socket.onmessage = function(msg){
-        console.log(msg.data);
     }
+    setTimeout(function () {
+        accident();
+    }, 8200);
 
-    socket.onclose = function(){
-        console.log("Closed.");
+    function accident() {
+        $('#no-accident').hide();
+        $('#accident').fadeIn(10);
+
+        $('#waiting_icon').hide();
+        $('#accident_info').fadeIn(10);
     }
-
-}
 
 });
 </script>
