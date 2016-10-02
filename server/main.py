@@ -12,6 +12,8 @@ STATIC_WEB_PORT = 8668
 WEBSOCKET_PORT = 9093
 SOCKET_PORT = 6667
 
+websockets = []
+
 def socketHandler():
     HOST = "192.168.43.174"
     server = SocketServer.TCPServer(("", SOCKET_PORT), socketListener)
@@ -28,7 +30,7 @@ class webSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self):
         print 'Got one'
         self.write_message("reply")
-        #websockets.append(self)
+        websockets.append(self)
 
     def on_message(self, message):
         self.write_message("New Data?")
@@ -53,6 +55,10 @@ def is_number(s):
     except ValueError:
         return False
 
+def sendAlarm():
+    for sock in websockets:
+        sock.write_message("dead")
+
 class socketListener(SocketServer.BaseRequestHandler):
 
     def handle(self):
@@ -60,7 +66,7 @@ class socketListener(SocketServer.BaseRequestHandler):
         #self.request.settimeout(10.0)
         try:
             with open("output", "a") as myfile:
-                while 1:
+
                     allLine = self.request.recv(1024)
                     lines = allLine.split("\n")
                     for line in lines:
@@ -68,6 +74,7 @@ class socketListener(SocketServer.BaseRequestHandler):
                         if (count>=8):
                             start = line[:4]
                             end = line[-4:]
+                            print "hi"
                             if (start=='ypr:' and end==':ypr'):
                                 values = line[4:count-4].split(":")
                                 flag = False
@@ -79,6 +86,9 @@ class socketListener(SocketServer.BaseRequestHandler):
                                         flag = True
                                         break
                                 if (flag == False):
+                                    number = float(values[1])
+                                    if (number < 0):
+                                        sendAlarm()
                                     print line[4:count-4]
                                     myfile.write(line[4:count-4] + "\n")
         except Exception as inst:

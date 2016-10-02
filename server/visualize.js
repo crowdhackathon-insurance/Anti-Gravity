@@ -112,4 +112,11 @@ function init2() {
     scene.add(mesh);
 
     renderer.setClearColor (0xffffff, 1)
+
+    var loader = new THREE.OBJLoader();
+    loader.load( "libs/3dcar/porsche-cayman.json", function ( object ) {
+      scene.add( object );
+    } );
+
+
 }

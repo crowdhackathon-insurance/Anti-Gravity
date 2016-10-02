@@ -78,6 +78,9 @@ jQuery(function($) {
 
         socket.onmessage = function(msg){
             console.log(msg.data);
+            if(msg.data == "dead"){
+                accident();
+            }
         }
 
         socket.onclose = function(){
@@ -85,9 +88,9 @@ jQuery(function($) {
         }
 
     }
-    setTimeout(function () {
-        accident()
-    }, 8200);
+    //setTimeout(function () {
+        //accident()
+    //}, 8200);
 
     function accident() {
         $('#no-accident').hide();
